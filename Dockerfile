@@ -36,6 +36,6 @@ WORKDIR "/opt"
 
 # Installs Android SDK
 RUN curl -O ${ANDROID_SDK_URL} && tar xf ${ANDROID_SDK_FILE} && \
-echo y | android update sdk --no-ui -a -u -t platform-tools,${ANDROID_APIS},${ANDROID_BUILD_TOOLS},extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services && \
+echo y | android update sdk --all --no-ui --filter platform-tools,${ANDROID_APIS},${ANDROID_BUILD_TOOLS},extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services && \
 rm ${ANDROID_SDK_FILE} 
 
