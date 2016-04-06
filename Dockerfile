@@ -36,6 +36,6 @@ WORKDIR "/opt"
 
 # Installs Android SDK
 RUN curl -O ${ANDROID_SDK_URL} && tar xf ${ANDROID_SDK_FILE} && \
-expect -c "set timeout -1; spawn android -  update sdk --all --no-ui --filter platform-tools,${ANDROID_APIS},${ANDROID_BUILD_TOOLS},extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services; expect { \"Do you accept the license\" { exp_send \"y\r\" ; exp_continue } eof }" && \
+( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --all --no-ui --filter platform-tools,${ANDROID_APIS},${ANDROID_BUILD_TOOLS},extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services && \
 rm ${ANDROID_SDK_FILE} 
 
