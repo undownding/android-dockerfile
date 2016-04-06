@@ -22,7 +22,7 @@ apt-get install -y --no-install-recommends oracle-java8-installer && \
 apt-get install -y --no-install-recommends oracle-java8-set-default && \
 rm -rf /var/cache/oracle-jdk8-installer 
 
-RUN apt-get install -y curl \
+RUN apt-get install -y curl except \
 
 # install 32-bit dependencies require by the android sdk
 libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 \
@@ -36,6 +36,6 @@ WORKDIR "/opt"
 
 # Installs Android SDK
 RUN curl -O ${ANDROID_SDK_URL} && tar xf ${ANDROID_SDK_FILE} && \
-echo 'y' | android update sdk --all --no-ui --filter platform-tools,${ANDROID_APIS},${ANDROID_BUILD_TOOLS},extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services && \
+expect -c "set timeout -1; spawn android -  update sdk --all --no-ui --filter platform-tools,${ANDROID_APIS},${ANDROID_BUILD_TOOLS},extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services; expect { \"Do you accept the license\" { exp_send \"y\r\" ; exp_continue } eof }" && \
 rm ${ANDROID_SDK_FILE} 
 
