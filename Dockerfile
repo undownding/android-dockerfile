@@ -22,7 +22,7 @@ apt-get install -y --no-install-recommends oracle-java8-installer && \
 apt-get install -y --no-install-recommends oracle-java8-set-default && \
 rm -rf /var/cache/oracle-jdk8-installer 
 
-RUN apt-get install -y curl except \
+RUN apt-get install -y curl expect \
 
 # install 32-bit dependencies require by the android sdk
 libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 \
