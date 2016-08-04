@@ -38,4 +38,4 @@ WORKDIR "/opt"
 RUN curl -O ${ANDROID_SDK_URL} && tar xf ${ANDROID_SDK_FILE} && \
 ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --all --no-ui --filter platform-tools,${ANDROID_APIS},${ANDROID_BUILD_TOOLS},extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services && \
 rm ${ANDROID_SDK_FILE} 
-
+RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --all --no-ui --filter build-tools-24.0.1
